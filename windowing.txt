@@ -1,0 +1,41 @@
+== Windowing System ==
+A Windowing System is software that manages separately different parts of display screens. It is a type of graphical user interface (GUI) which implements the WIMP (windows, icons, menus, pointer) paradigm for a user interface. In my own words, it allows the user-space programs to manipulate pixels on the display (graphics hardware) through an abstraction of windows.
+
+Each currently running application is assigned a usually resizable and usually rectangular shaped surface of the display to present its graphical user interface to the user.
+
+The main component of any windowing system is usually called the display server. Any application that runs and presents its GUI in a window, is a client of the display server. The display server and its clients communicate with each other over a communications protocol, which is usually called display server protocol. The display server also serves as a mediator between the clients and the user. It receives input from the kernel, that the kernel receives from attached input devices, such as keyboard, pointing devices, or touchscreen and transmits it to the correct client. The display server is also responsible for the output of the clients to the computer monitor. 
+
+== X11 High Level ==
+X provides the basic framework for a GUI environment: drawing and moving windows on the display device and interacting with a mouse and keyboard. X does not mandate the user interface – this is handled by individual programs.
+
+X uses a client–server model. An X server program runs on a computer with a graphical display and communicates with various client programs. The X server acts as a go-between for the user and the client programs for graphical output (windows) from the client programs and displaying them to the user (display), and receiving user input (keyboard, mouse) and transmitting it to the client programs.
+
+=== Simple Architecture Diagram ====
+Keyboard ---> |----------|
+Mouse    ---> | X Server | <-- Multiple XClients over various transports supported by X
+              |          |
+Screen   <--- |----------|
+
+== Window Mangers in X11 ==
+In X11 a window manager augments the behavior of the X server. When a window manager is running, some kinds of interaction between the X server and its clients are redirected through the window manager.In particular, whenever an attempt to show a new window is made, this request is redirected to the window manager, which decides the initial position of the window. Additionally, most modern window managers are reparenting, which usually leads to a banner being placed at the top of the window and a decorative frame being drawn around the window. These two elements are controlled by the window manager rather than the program. Therefore, when the user clicks or drags these elements, it is the window manager that takes the appropriate actions (such as moving or resizing the window).
+
+== X Clients ==
+Clients connect to an X Server via a name of the form:
+   hostname:displaynumber:screennumber
+
+hostname - The hostname specifies the name of the machine to which the display is physically connected. If the hostname is not given, the most efficient way of communicating to a server on the same machine will be used.
+displaynumber - Associates multiple monitors with user input. Identifies an X Server
+screennumber - Allows multiple monitors to be associated with an X Server. Each screen has its own set of windows.
+
+Applications often use the DISPLAY environment variable to determine the X Server to connect to.
+
+== Analyzing My Machine ==
+xfce (xinit) is running '/usr/lib/Xorg -nolisten tcp :0 vti'
+* :0 specifies the display name. This serves as identification for the X Server
+xfce is also runing 'xfwm4 --display :0.0 --sm-client-id blah'
+* xfwm4 is the window manager
+
+== Resources ==
+https://en.wikipedia.org/wiki/X_Window_System_core_protocol
+https://linux.die.net/man/7/x
+https://linux.die.net/man/1/xserver
