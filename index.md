@@ -4,4 +4,4 @@ One of the joys of Linux is learning how the OS and popular user-space applicati
 
 ## Sections
 * [SSH](ssh.md)
-
+* [Terminals](terminals.md)
