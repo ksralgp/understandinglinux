@@ -1,2 +1,2 @@
-# understandinglinux
-Personal Documentation For Understand Nuts and Bolts of Linux
+# Understanding Linux
+Personal Documentation For understand the nuts and bolts of Linux
