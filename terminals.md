@@ -15,9 +15,9 @@ One of the first terminals was a piece of hardware known as a TeleTYpewriter. A 
 The following diagram shows the interaction between a classic terminal, the kernel, and user-space:
 
 <pre>
-								 |---------------------- Computer ----------------------------------------|
-									  |---------------- Kernel Space -----------------------|
-									                                                         |--- User Space ---|
+                                 |---------------------- Computer ----------------------------------------|
+                                      |---------------- Kernel Space -----------------------|
+                                                                                             |--- User Space ---|
 Terminal <--> Serial Line <--> UART <--> UART Driver <--> Line Discipline <--> TTY Driver <----> Applications
 
 </pre>
@@ -32,9 +32,9 @@ So in summary, a tty was initially an OS abstraction used to represent a text in
 As computing evolved (personal computers, windowed multi-tasking graphical environments, etc) the notion of a terminal evolved. Things no longer communicate over serial so terminal like interactions now happen on a terminal emulator. Let's start with a personal computer with an integrated keyboard and display (via graphics driver). The kernel provides a terminal emulator for interfacing with graphics and the keyboard.
 
 <pre>
-		  |---------------------- Computer -----------------------------------------------------------------|
-		  |---------------- Kernel Space -------------------------------------------------------|
-		                                                                                         |--- User Space ---| 
+          |---------------------- Computer -----------------------------------------------------------------|
+          |---------------- Kernel Space -------------------------------------------------------|
+                                                                                                 |--- User Space ---| 
 Display <--> Graphics Driver <-->  | Terminal Emulator | <--> Line Discipline <--> TTY Driver <----> Applications
 Keyboard --> Keyboard Driver --->  |                   |
 </pre>
@@ -44,14 +44,14 @@ This is how things are running when you boot into login without a window manager
 In a graphical environment like XFCE the terminal emulator is an application that runs in user-space that behaves like a terminal (text input/output). Many terminal emulators still rely on on parts of the kernel's TTY subsystem for session management and line discipline. The kernel provides a pty (psuedo terminal) abstraction for this.
 
 <pre>
-		  |-----Kernel Space ----------------|
-		                                      |-------- User Space ------------------|
+          |-----Kernel Space ----------------|
+                                              |-------- User Space ------------------|
              | TTY Driver (PTY follower) | <-----> User Space Applications (IE Bash)
-			            -----
+                        -----
                           |
                           |
-					    -----
-			 |       PTY Primary         | <---> Terminal Emulator
+                        -----
+             |       PTY Primary         | <---> Terminal Emulator
 </pre>
 
 == How It Is Implemented ==
