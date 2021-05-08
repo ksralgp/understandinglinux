@@ -54,6 +54,40 @@ In a graphical environment like XFCE the terminal emulator is an application tha
              |       PTY Primary         | <---> Terminal Emulator
 </pre>
 
+## Making Sense of The Implementation Using Linux APIs
+Let's poke around /usr/include and look for things related to tty and pty. 
+### <unistd.h>
+unistd.h is a header that provides access to the POSIX OS API. Within it we find some useful APIs for determining if a file-descriptor corresponds to a TTY and how to query the name of the TTY. This header also defines symbolic constants for standard input, output, and error's file descriptors. For user space application, we are likely to put these two things together and check if our standard input and output are a tty. 
+```
+/* Standard file descriptors.  */
+#define STDIN_FILENO    0       /* Standard input.  */
+#define STDOUT_FILENO   1       /* Standard output.  */
+#define STDERR_FILENO   2       /* Standard error output.  */
+[SNIP]
+/* Return the pathname of the terminal FD is open on, or NULL on errors.
+   The returned storage is good only until the next call to this function.  */
+extern char *ttyname (int __fd) __THROW;
+
+/* Store at most BUFLEN characters of the pathname of the terminal FD is
+   open on in BUF.  Return 0 on success, otherwise an error number.  */
+extern int ttyname_r (int __fd, char *__buf, size_t __buflen)
+     __THROW __nonnull ((2)) __wur __attr_access ((__write_only__, 2, 3));
+
+/* Return 1 if FD is a valid descriptor associated
+   with a terminal, zero if not.  */
+extern int isatty (int __fd) __THROW;
+```
+With these APIs we can 
+* See how the OS organize/names terminals
+* Write a shell environment 
+
+### <pty.h>
+
+
+
+
+
+
 == How It Is Implemented ==
 
 . An abstraction for the interaction between mainframe an I/O device helps standardize:
@@ -72,8 +106,17 @@ curses
 tty <-- tells you the tty associated with stdinput
 stty <-- prints
 
+
+#include <unistd.h>
+isatty
+  STDIN_FILENO
+  STDOUT_FILENO
+  
+
 ## Information Missing a Home
 Another important concept is session management. Within a terminal a user is running 1 or more programs simultaneously and interacting with 1 of them, known as the foreground process/program.
+
+Signals?
 
 ## Questions
 How does SSH interact with the tty subsystem?
@@ -86,3 +129,13 @@ https://unix.stackexchange.com/questions/4126/what-is-the-exact-difference-betwe
 https://askubuntu.com/questions/14284/why-is-a-virtual-terminal-virtual-and-what-why-where-is-the-real-terminal
 
 http://www.linusakesson.net/programming/tty/index.php
+
+https://en.wikipedia.org/wiki/Linux_console
+
+https://en.wikipedia.org/wiki/Unistd.h
+
+https://man7.org/linux/man-pages/man7/pty.7.html
+
+https://man7.org/linux/man-pages/man4/pts.4.html 
+
+https://www.man7.org/linux/man-pages/man2/ioctl_tty.2.html

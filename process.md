@@ -34,7 +34,7 @@ F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND
 ```
 On my machine I see 239 processes using `ps -A | wc -l`, yet using `lscpu` I see that my machine only has 8 cores. This exemplifies another important feature of Linux. It supports having more processes running than CPUs that are availabe. Although 239 processes are running on my machine, at a single instance in time a much smaller subset of processes are executing instructions on a CPU. A subsystem of the Linux kernel known as the scheduler manages the partioning of CPU resources across all running processes. 
 
-More generically, programs in Linux can be written without awareness of other running processes. It is the responsibility of the Linux kernel to manage the sharing of hardware resources across processes. The previously mentioned scheduler is an example of this for CPU resources. Virtual memory is an example of this for memory resources. A process interacts with a virtual address space and the Linux kernel manages the translation of virtual addresses into physical addresses. This allows RAM to be shared across all processes.
+A benefit of this approach is programs in Linux can be written without awareness of other running processes. It is the responsibility of the Linux kernel to manage the sharing of hardware resources across processes. Linux uses a variety of techniques and systems to achieve this. The previously mentioned scheduler is an example of this for sharing CPU resources. Virtual memory is an example of this for sharing memory resources.
 
 ### PID 
 A PID (process ID) is a unique identifier for a process. The Linux kernel is responsible for assigning a PID to a process when the process is created. The following PID values are special:
@@ -127,8 +127,17 @@ int main(int argn, char** argv) {
 I am the Child. My arguments are:
 child
 ```
-Putting everything together, the general workflow for creating a new process is fork then exec.
+Putting everything together, the general workflow for creating a new process is fork then exec. So in our example bash command
+```
+> gcc processLifeCycle.c -o processLifeCycle
+```
+the bash process forks and uses an exec* command to run the gcc binary.
 ### Termination
+
+
+
+
+
 ## Process Organization and Hierarchy
 
 ### Groups and Job Control
