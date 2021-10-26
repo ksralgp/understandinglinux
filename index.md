@@ -6,3 +6,5 @@ One of the joys of Linux is learning how the OS and popular user-space applicati
 * [Process](process.md)
 * [SSH](ssh.md)
 * [Terminals](terminals.md)
+* [Linux Namespaces](linux_namespaces.md)
+* [Containers](containers.md)
