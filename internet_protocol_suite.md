@@ -15,8 +15,8 @@ TCP/IP is based around the architecture of the interent:
 A host needs to implement TCP/IP to communicate on the Internet. TCP/IP is structured as a protocol stack with four abstract layers. Multiple protocol choices might be available at a layer. All of the protocol choices for a layer adhere to a set of underlying requirements for that layer.
 Layer | Description | Supported Protocols
 ----- | ----------- | -----------------
-Application Layer | Responsible for encoding/decoding the intended message between hosts | HTTP, SSH, DNS, etc.
-Transport Layer | Responsible for the channel over which data is sent between two hosts on the internet | TCP, UDP
+Application Layer | Responsible for encoding/decoding the intended message between applications running on hosts communicating over the internet | HTTP, SSH, DNS, etc.
+Transport Layer | Responsible for the channel over which data is sent between applications running on hosts communicating over the internet | TCP, UDP
 Internet Layer | Responsible for routing data from a source host to a destination host | Internet Protocol (IP)
 Link Layer | Responsible for routing data on the network the host is physically connected to | Ethernet, WLAN
 
@@ -33,7 +33,27 @@ Routing | Routing is the process of selecting the next location that an IP packe
 ## ARP: Requirement on the Link Layer
 Todo
 
+## User Datagram Protocol (UDP)
+UDP is a connectionless transport layer protocol. A UDP message has an associated source and destination port number. These port numbers determine how data is routed from the transport layer to the application layer. The source port also provides an address to repsond to in the abscence of any other information. The unit of information transmitted over UDP is called a datagram and consists of:
+* Source Port
+* Destination Port
+* Length: Size of header + Application Data
+* Checksum
+* Application Data (payload)
+
 ## Transmission Control Protocol (TCP)
+TCP is connection-oriented, end-to-end reliable transport layer protocol. Like UDP, a message in TCP has an associated source and destination port number. The unit of information transmitted over TCP is called a segment and consists of:
+* Source Port
+* Destination Port
+* Sequence Number
+* Acknowledgement Number
+* Data offset
+* Flags
+* Window Size
+* Checksum
+* Application Data (payload)
+
+The additional header fields in comparison to UDP are needed to implement the additional features of TCP like an established connection and reliable transport.
 
 ## Data Encapsulation
 For transmission, data and control/routing information (TCP port, destination IP, next hop IP,etc) flows down the layers of TCP/IP
@@ -45,7 +65,7 @@ Link        : [[Link Header][Internet Data]] --> [Link Data]
 </pre>
 At each layer, the control/routing information is used to re-package data from the upper layer with a protocol specific header.
 
-Receiving data flows up the set of layers. At each layer, the protocol header determines where the data is routed. As data moves upward the header associated with the lower part of the stack is stripped from the datagram.
+Receiving data flows up the set of layers. At each layer, the protocol header determines where the data is routed. As data moves upward the header associated with the lower part of the stack is stripped from the datagram. Note the stripping is conceptual, as certain parts of lower level headers info, like IP addresses, needs to flow upward.
 
 # References 
 https://docs.oracle.com/cd/E19455-01/806-0916/6ja85398m/index.html
@@ -67,3 +87,11 @@ https://datatracker.ietf.org/doc/html/rfc791
 https://en.wikipedia.org/wiki/IPv4
 
 https://en.wikipedia.org/wiki/IP_routing
+
+https://datatracker.ietf.org/doc/html/rfc768
+
+https://en.wikipedia.org/wiki/User_Datagram_Protocol
+
+https://datatracker.ietf.org/doc/html/rfc761
+
+http://www.cs.toronto.edu/~ahchinaei/teaching/2016jan/csc358/Lecture05-1p.pdf
