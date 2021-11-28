@@ -1,6 +1,6 @@
 # Process
 ## Read this Instead
-Linux Systems Programs sectoin on Processes. Honestly just read this whole book.
+Linux Systems Programs section on Processes. Honestly just read this whole book.
 
 ## Executable File
 An executable or binary is a file that encodes instructions in a format that the OS understands how to run. For example in bash the command

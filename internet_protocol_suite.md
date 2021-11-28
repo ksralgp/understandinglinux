@@ -5,7 +5,7 @@ A communication protocol is a system of rules that allows two or more entities i
 Complex communication protocols are often designed as a set of simpler cooperating protocols. This is called a protocol suite. A protocol suite is often implemented as a layering of protocols. Each protocol in this stack of layers accomplishes a specific part of the communication and interacts with the others layers in a limited fashion. 
 
 The Internet Protocol suite is used for communication over the Internet. This suite of protocols is commonly referred as TCP/IP.
-## Architectural Assumption of the TCP/IP
+## Architectural Assumption of TCP/IP
 TCP/IP is based around the architecture of the interent:
 * Hosts are the consumers of communication on the internet
 * Multiple hosts can be connected together onto a network and communicate with each other using the Internet Protocol suite

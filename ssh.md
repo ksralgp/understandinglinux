@@ -1,20 +1,20 @@
 # SSH
 ## Intro
-Secure Shell (SSH) is a protocol for secure remote login and other secure network services over an insecure network. SSH provides a secure channel over an unsecured network by using a client–server architecture, connecting an SSH client application with an SSH server.[2] The protocol specification distinguishes between two major versions, referred to as SSH-1 and SSH-2.
+Secure Shell (SSH) is a protocol for secure remote login and other secure network services over an insecure network. SSH provides a secure channel over an unsecured network by using a client–server architecture, connecting an SSH client application with an SSH server. The protocol specification distinguishes between two major versions, referred to as SSH-1 and SSH-2.
 
 SSH uses public-key cryptography to authenticate the remote computer and allow it to authenticate the user.
 
 ## SSH Protocal Overview
-The SSH2 protocal consists of 3 main components:
-* Transport Layer Protocal - provides server authentication, confidentiality, and integrity
-* User Authentication Protocal - Authenticates the client-side user to the server. It runs over the transport layer protocal
-* Connection Protocal - Multiplexes the encrypted encrypted tunnel into several logical channels. It runs over the user authentication protocal
+The SSH2 protocol consists of 3 main components:
+* Transport Layer Protocol - provides server authentication, confidentiality, and integrity
+* User Authentication Protocol - Authenticates the client-side user to the server. It runs over the transport layer protocol
+* Connection Protocol - Multiplexes the encrypted encrypted tunnel into several logical channels. It runs over the user authentication protocol
 
 The client sends a service request once a secure transport layer connection has been established.  A second service request is sent after user authentication is complete.  This allows new protocols to be defined and coexist with the protocols listed above.
 
 The connection protocol provides channels that can be used for a wide range of purposes.  Standard methods are provided for setting up secure interactive shell sessions and for forwarding ("tunneling") arbitrary TCP/IP ports and X11 connections.
 
-## Transport Layer Protocal
+## Transport Layer Protocol
 The SSH transport layer is a secure, low level transport protocol. It provides strong encryption, cryptographic host authentication, and integrity protection. Authentication in this protocol level is host-based; this protocol does not perform user authentication.
 
 ### Connection Setup
@@ -30,15 +30,15 @@ Security is based on the client knowing and trusting the server's public key a-p
 ### Service Request
 After the key exchange the client requests a services IE 'ssh-userauth'.
 
-## SSH User Authentication Protocal
+## SSH User Authentication Protocol
 User Authentication methods:
 * publickey - The user authenticates by showing knowledge of a private key. In advance on the server a (public-key, private-key) pair is generated and the user holds the private key.
-* password - The user sends a message with their password. This message (and the password within it) is encrypted based on the transport layer protocal setup by the key exchange
+* password - The user sends a message with their password. This message (and the password within it) is encrypted based on the transport layer protocol setup by the key exchange
 * hostbased -
 * none
 
-## SSH Connection Protocal
-This protocal provides interactive login sessions, remote execution of commands, forwarded TCP/IP connections, and forwarded X11 connections. Security is not explicitly provided in this protocal as that is assumed to be setup via the Transport Layer Protocal and the User Authentication Protocal.
+## SSH Connection Protocol
+This protocol provides interactive login sessions, remote execution of commands, forwarded TCP/IP connections, and forwarded X11 connections. Security is not explicitly provided in this protocol as that is assumed to be setup via the Transport Layer Protocol and the User Authentication Protocol.
 
 ### Channel Mechanism
 All terminal sessions, forwarded connections, etc., are channels. Either side may open a channel. Multiple channels are multiplexed into a single connection.
