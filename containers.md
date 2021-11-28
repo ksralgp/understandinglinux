@@ -8,12 +8,14 @@ To support running in isolation, containers need to have little to zero outside 
 To summarize, a Container allows a set of processes to run in an isolated and self-contained environment on a Host OS. Multiple containers can run simultaneously on a Host OS. 
 
 ## Key Components of Containers
+
 Component | Description
 --------- | ----------
 Container Image | A file that describes how to setup the environment within a running container. Any data/files needed to setup the environment should be part of this file. For example, this file describes how to setup the file system used in the container along with the files that belong to this filesystem.
 Container Runtime | An application responsible for translating a container image into a running a container. The runtime is also responsible for managing the lifetime of the container.
 
 ## Userful Features of Containers
+
  Feature | Description
 -------- | -----------
 No manual dependency management | Running an application on Linux often requires installing the right dependent packages. A containerized application has all of its dependencies within its image 

@@ -13,6 +13,7 @@ TCP/IP is based around the architecture of the interent:
 
 ## The Internet Protocol Suite: TCP/IP
 A host needs to implement TCP/IP to communicate on the Internet. TCP/IP is structured as a protocol stack with four abstract layers. Multiple protocol choices might be available at a layer. All of the protocol choices for a layer adhere to a set of underlying requirements for that layer.
+
 Layer | Description | Supported Protocols
 ----- | ----------- | -----------------
 Application Layer | Responsible for encoding/decoding the intended message between applications running on hosts communicating over the internet | HTTP, SSH, DNS, etc.
@@ -24,6 +25,7 @@ Beyond hosts, IP routers are a critical architectural assumption of TCP/IP. They
 
 ## Internet Protocol (IP)
 The internet protocol is central to TCP/IP. It is directly concerned with sending data between hosts. The key concepts behind IP are
+
 Concept | Description
 ------- | -----------
 IP Address | A host has an identifying address called an IP address. The format of this address depends on the IP version being used. Note that things get a little more complicated with private networks (LANs)
