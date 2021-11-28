@@ -37,6 +37,7 @@ IPC | man ipc_namespaces | Isolates certain Linux IPC resources like POSIX messa
 
 ## System APIs related to Namespaces
 The following APIs allow for control of the namespaces a process belongs to:
+
 API | Brief Description
 --- | ----------------
 clone | General API for creating a child process similar to fork. Supports flags related to namespaces
