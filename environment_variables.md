@@ -7,6 +7,7 @@ A process in Linux has an associated Environment accessible in the external vari
 extern char **environ
 ```
 This variable points to an array of NULL terminated strings. Each element of the array defines an Environment variable using the syntax `name=value`. A set of APIs are provided for interacting with 'environ`:
+
 API | Description 
 --- | -----------
 getenv | Get the value of an Environment Variable
@@ -16,6 +17,7 @@ putenv | Set the value of an Environment Variable. Always overwrites an existing
 
 ### Environment Inheritance
 The Environment a process starts with is dependent on the process creation API and its arguments:
+
 API | Created Process Environment
 --- | ---------------------------
 fork | The child process has a copy of the parent process Environment
@@ -28,6 +30,7 @@ Most shell languages support scoped Environment variables:
 * Exported - Placed in the Environment of the shell process. A child process launched by the shell will inherit this variable in its environment
 
 Different shells use different syntax to signify local versus exported
+
 Shell | Local Syntax | Exported Syntax
 ----- | ------------ | ---------------
 Bash | name=value | export name=value
@@ -35,6 +38,7 @@ Fish | set name value | set -x name value
 
 
 ## Common Environment Variables
+
 Name | Common Usage
 ---- | ------------
 PATH | A sequence of directories many programs search to resolve an executable specified by filename only. Directory names are separated by a ':' character. Note the APIs execlp and execvp try to resolve names using PATH
